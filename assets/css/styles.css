@@ -1,0 +1,156 @@
+body {
+  background-color: lightgray;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.content-wrapper{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper main {
+  flex-basis: 100%;
+  flex-shrink: 1;
+  flex-grow: 0;
+}
+
+.navbar,
+footer {
+  padding: 15px 10px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .navbar-logo {
+  height: 75px;
+  width: auto;
+}
+
+.navbar-board {
+  height: 150px;
+  width: 150px;
+}
+
+.navbar-piece {
+  height: 15px;
+  width:  15px;
+}
+
+.navbar-login,
+.navbar-user {
+  display: none;
+}
+
+button {
+  border: 2px solid #f8f9fa;
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+button:not([disabled]):hover {
+  border-color: rgba(0, 0, 0, 0.5);
+  background-color: #e2e6ea;
+}
+
+.ml-auto {
+  margin-left: auto;
+  display: block;
+}
+
+.show {
+  display: block !important;
+}
+
+.show-flex {
+  display: flex !important;
+}
+
+.fade-in {
+  opacity: 1 !important;
+}
+
+.large-bold {
+  font-size: 300%;
+  font-weight: bold;
+}
+
+.medium-bold {
+  font-size: 200%;
+  font-weight: bold;
+}
+
+
+.dropdown-button {
+  border: 2px solid #f8f9fa;
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+.dropdown:hover {
+  border-color: rgba(0, 0, 0, 0.5);
+  background-color: #f8f9fa;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+}
+
+.dropdown-content > * {
+  width: 100%;
+  border-radius: 0%;
+}
+
+.dropdown-content > *:not(:last-child) {
+  border-bottom: 1px solid black;
+}
+
+.show {
+  display: block !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+ul {
+  padding-left: 18px;
+}
+
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+.ranking-table .ranking-row {
+  display: flex;
+  padding: 5px;
+}
+.ranking-table .ranking-column {
+  flex: 1;
+}
+
+li.no-marker {
+  list-style: none;
+}

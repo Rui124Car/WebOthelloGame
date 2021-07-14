@@ -1,0 +1,19 @@
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 2px;
+}
+
+.form-control {
+  font-size: 15px;
+  line-height: 28px;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+}

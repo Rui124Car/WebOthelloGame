@@ -1,0 +1,244 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Jogo do Othello</title>
+  <meta name="description" content="Jogo do Othello">
+  <meta name="author" content="Ana Loureiro, Rui Cardoso">
+
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/modals.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/forms.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/game.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/alerts.css" type="text/css" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- DEFINES GLOBAL VARIABLES-->
+  <script>
+    EMPTY = 'empty';
+    BLACK = 'dark';
+    WHITE = 'light';
+    COMPUTER_PLAYER = 'computer';
+    HUMAN_PLAYER = 'human';
+  </script>
+</head>
+
+<body>
+
+  <!-- botões de Login, configurações, rankings, give up, sair-->
+  <div class="content-wrapper">
+    <nav class="navbar">
+      <img class="navbar-logo" src="assets/img/logo.png" alt="Othello">
+
+      <div class="navbar-login show" data-user-login>
+        <button data-open-modal="#authModal">Entrar/Registar</button>
+      </div>
+
+
+      <div class="navbar-user" data-user-info>
+        <!-- User info goes here -->
+        <div class="dropdown">
+          <button data-toggle-dropdown class="dropdown-button"><span data-user-name></span></button>
+
+          <div id="drop_down" class="dropdown-content">
+            <button data-open-modal="#configModal" disabled="disabled">Configurações</button>
+            <button data-open-modal="#rankingModal" data-render-ranking>Classificações</button>
+            <button data-give-up disabled="disabled">Desistir</button>
+            <button data-logout disabled="disabled">Sair</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div id="game" data-game-board></div>
+    </main>
+
+    <footer>
+      <button data-open-modal="#rulesModal">Abrir regras</button>
+    </footer>
+  </div>
+
+  <!-- Begin: Modals -->
+  <!--Regras de jogo-->
+  <div id="rulesModal" class="modal">
+    <div class="modal-dialog">
+      <h2 class="large-bold text-center">Regras do Othello</h2>
+      <p>O <strong>Othello</strong> é uma variante moderna do Reversi. Difere deste por fixar a posição inicial das 4
+        peças/discos iniciais nas casas centrais.</p>
+      <h3>Tabuleiro</h3>
+      <img class="navbar-board" src="assets/img/Tabuleiro.png" alt="Board">
+      <ul>
+        <li>Tabuleiro quadrado</li>
+        <li>Grelha com 8 linhas por 8 colunas</li>
+        <li><strong>Não</strong> xadrezado, contrariamente às damas ou ao xadrez</li>
+        <li>Geralmente de fundo verde</li>
+      </ul>
+      <h3>Peças / Discos</h3>
+      <ul>
+        <li>As peças denominam-se <strong>discos</strong></li>
+        <li>São circulares</li>
+        <li>Com 2 face de diferentes tonalidades</li>
+        <li class="no-marker">
+          <ul>
+            <li>lado <strong>escuro</strong> <img class="navbar-piece" src="assets/img/Black.png" alt="Black Piece"></li>
+            <li>lado <strong>claro</strong> <img class="navbar-piece" src="assets/img/White.png" alt="White Piece"></li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Início do jogo</h3>
+      <img class="navbar-board" src="assets/img/1.png" alt="Board">
+      <ul>
+        <li>Na posição inicial há 4 peças</li>
+        <li>2 de cada uma das 2 tonalidades — claro e escuro</li>
+        <li>Colocadas nas casas centrais</li>
+        <li>Peças da mesma tonalidade ficam em diagonal</li>
+        <li>As peças escuras jogam primeiro</li>
+      </ul>
+      <h3>Jogar as peças</h3>
+      <img class="navbar-board" src="assets/img/1.png" alt="Board"> <img class="navbar-board" src="assets/img/2.png"
+        alt="Board"> <img class="navbar-board" src="assets/img/3.png" alt="Board">
+      <ul>
+        <li>Durante o jogo os jogadores jogam alternadamente</li>
+        <li>Colocam uma peça da sua cor numa casa livre</li>
+        <li>Se na mesma linha, coluna ou diagonal da peça jogada…</li>
+        <li>…peças da cor contrária viram para a cor do jogador</li>
+        <li>Só pode ser jogada uma peça se for virada alguma</li>
+      </ul>
+      <h3>Jogar II</h3>
+      <img class="navbar-board" src="assets/img/4.png" alt="Board"> <img class="navbar-board" src="assets/img/5.png"
+        alt="Board">
+      <ul>
+        <li>A peça colocada pode virar várias peças do adversário</li>
+        <li>Que estão na mesma linha coluna ou diagonal da peça jogada</li>
+        <li>Desde que num dos extremos esteja a peça jogada</li>
+        <li>E no outro esteja uma peça do mesmo tom</li>
+      </ul>
+      <h3>Jogar III</h3>
+      <img class="navbar-board" src="assets/img/6.png" alt="Board"> <img class="navbar-board" src="assets/img/7.png"
+        alt="Board">
+      <ul>
+        <li>Podem ser viradas várias peças consecutivas do adversário</li>
+        <li>Na mesma linha, coluna ou diagonal</li>
+        <li>Desde que delimitadas pela peça jogada</li>
+        <li>E outra do mesmo tom <small>(do jogador)</small></li>
+      </ul>
+      <h3>Passar</h3>
+      <img class="navbar-board" src="assets/img/8.png" alt="Board">
+      <ul>
+        <li>Na sua vez, o jogador só pode jogar se virar peças</li>
+        <li>Caso conrário não poderá jogar e terá de passar a jogada</li>
+        <li>Mas só pode passar se não tiver jogada possível</li>
+      </ul>
+      <h3>Terminar</h3>
+      <img class="navbar-board" src="assets/img/9.png" alt="Board"> <img class="navbar-board" src="assets/img/10.png"
+        alt="Board"> <img class="navbar-board" src="assets/img/11.png" alt="Board">
+      <ul>
+        <li>Jogo termina quando nenhum jogador pode jogar</li>
+        <li>Geralmente quando o tabuleiro está todo preenchido</li>
+        <li>Mas não necessariamente — ver exemplos acima</li>
+        <li>Ganha o jogador com maior número de peças</li>
+      </ul>
+      <button class="modal-close" data-close-modal="#rulesModal">X</button>
+    </div>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="authModal" class="modal modal-small">
+    <div class="modal-dialog">
+      <button class="modal-close" data-close-modal="#authModal">X</button>
+
+      <form data-login-form action="/" method="POST">
+        <div class="form-group">
+          <label>Utilizador</label>
+          <input type="text" name="username" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="password" class="form-control">
+        </div>
+
+        <button type="submit" class="ml-auto">Submeter</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- X, para fechar a div de Ranking-->
+  <div id="rankingModal" class="modal modal-small">
+    <div class="modal-dialog">
+      <button class="modal-close" data-close-modal="#rankingModal">X</button>
+
+      <div data-ranking-table class="ranking-table"></div>
+    </div>
+  </div>
+
+  <!-- Configuração do jogo -->
+  <div id="configModal" class="modal modal-small">
+    <div class="modal-dialog">
+      <button class="modal-close" data-close-modal="#configModal">X</button>
+
+      <h2>Configuração</h2>
+
+      <form data-config-form action="/" method="POST">
+        <div class="form-group">
+          <label>Pretende jogar contra</label>
+
+          <div class="form-radio">
+            <input type="radio" name="against" value="computer" onclick="configAgainstComputer()" checked>
+            <label>Computador</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" name="against" value="player" onclick="configAgainstPlayer()">
+            <label>Jogador</label>
+          </div>
+        </div>
+
+        <div class="form-group form-range" data-range-input>
+          <label>Nível de IA</label>
+          <input name="ia_level" type="range" step="1" min="1" max="3">
+        </div>
+
+        <div class="form-group">
+          <label>Cor</label>
+
+          <div class="form-radio">
+            <input type="radio" name="color" value="dark" checked>
+            <label>Preto</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" name="color" value="light">
+            <label>Branco</label>
+          </div>
+        </div>
+
+        <button type="submit" class="ml-auto">Começar</button>
+      </form>
+    </div>
+  </div>
+  <!-- End: Modals -->
+
+  <!-- JS -->
+  <script src="assets/js/modals.js"></script>
+  <script src="assets/js/forms.js"></script>
+  <script src="assets/js/ranking.js"></script>
+  <script src="assets/js/game.js"></script>
+  <script src="assets/js/login.js"></script>
+  <script src="assets/js/dropdown.js"></script>
+  <script src="assets/js/alerts.js"></script>
+  <script src="assets/js/spinner.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/start.js"></script>
+</body>
+</html>

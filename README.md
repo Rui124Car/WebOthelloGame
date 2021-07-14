@@ -1,2 +1,1 @@
-# WebOthelloGame
-Web Othello Game
+#tecweb

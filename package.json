@@ -1,0 +1,28 @@
+{
+  "name": "othello",
+  "version": "1.0.0",
+  "description": "Server for Othello game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js othello",
+    "stop": "pkill --signal SIGINT othello",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ana19Lou/TW.git"
+  },
+  "keywords": [
+    "Othello"
+  ],
+  "author": "Ana Loureiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ana19Lou/TW/issues"
+  },
+  "homepage": "https://github.com/Ana19Lou/TW#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

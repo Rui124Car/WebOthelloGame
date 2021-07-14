@@ -1,0 +1,140 @@
+@keyframes piece-drop {
+  0% {
+    transform: translateZ(0);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  100% {
+    transform: translateZ(-400px);
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+  }
+}
+
+#game {
+  display: none;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.game-board {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: center;
+  width: 70vh;
+  border: 2px solid black;
+}
+
+.game-board-row {
+  align-items: center;
+  display: flex;
+  flex-basis: 1px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  justify-content: center;
+  width: 100%;
+}
+
+.game-board-row:not(:last-of-type) {
+  border-bottom: 1px solid black;
+}
+
+.game-board-column {
+  align-items: center;
+  display: flex;
+  flex-basis: 1px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: 100%;
+  justify-content: center;
+  background-color: #008000;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.game-board-column:not(:last-of-type) {
+  border-right: 1px solid black;
+}
+
+.game-board-column.possible-play {
+  position: relative;
+}
+
+.game-board-column.possible-play:hover {
+  background-color: #006400;
+  cursor: pointer;
+}
+
+.game-board-column.possible-play::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+  border-radius: 50%;
+}
+
+.game-board-column.possible-play-light::after {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.game-board-column.possible-play-dark::after {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.game-piece {
+  border-radius: 50%;
+  height: 80%;
+  width: 80%;
+}
+
+.game-piece.game-piece-dropped {
+  animation: piece-drop 0.45s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+.game-piece.game-piece-light {
+  background-color: #fff;
+}
+
+.game-piece.game-piece-dark {
+  background-color: #000;
+}
+
+#game-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-size: large;
+}
+
+#game-table > div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border: 1px solid black;
+  border-radius: 7px;
+  background-color: #FFF5EE;
+}
+
+#game-table > div > div {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+button[data-skip-play] {
+  margin-bottom: 15px;
+}
+
+.game-turn {
+  margin-bottom: 10px;
+}

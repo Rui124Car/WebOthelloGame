@@ -1,0 +1,71 @@
+@keyframes countDown {
+  0% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    position: absolute;
+    left: 300px;
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    position: relative;
+    left: 0;
+    display: block;
+    opacity: 1;
+  }
+}
+
+.alerts-wrapper {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 300px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.alerts-wrapper .alert {
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  animation: fadeIn 1s ease-in-out;
+  max-width: 300px;
+  margin: 10px;
+  position: relative;
+}
+
+.alerts-wrapper .alert::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: grey;
+  height: 4px;
+  width: 0;
+  border-radius: 0 0 5px 5px;
+  animation: countDown 5s linear;
+  animation-delay: 1s;
+}
+
+.alerts-wrapper .alert h4 {
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.alerts-wrapper .alert h4 {
+  font-size: 14px;
+}
